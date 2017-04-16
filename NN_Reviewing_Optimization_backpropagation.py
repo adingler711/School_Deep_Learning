@@ -1,5 +1,7 @@
 
-# coding: utf-8
+
+
+
 
 # In[1]:
 
@@ -7,9 +9,9 @@ import numpy as np
 from simple_MLP_fixed_size import *
 
 # Parameter definitions, to be replaced with user inputs
-alpha = 0.5             # parameter governing steepness of sigmoid transfer function
+alpha = 0.9            # parameter governing steepness of sigmoid transfer function
 summedInput = 1
-maxNumIterations = 100000    # You can adjust this parameter; 10,000 typically gives good results when training.
+maxNumIterations = 1000000    # You can adjust this parameter; 10,000 typically gives good results when training.
 eta = 0.9              # training rate
 
 # Establish some parameters just before we start training
@@ -92,16 +94,18 @@ SSE_Array = [0] * inputArrayLength + [0] * outputArrayLength + [0] # [0,0,0,0,0]
 # Compute the random weights and bias values ########## may need to move this to outside the while loop
 
 # Obtain the actual (randomly-initialized) values for the input-to-hidden connection weight matrix.
-wWeightArray = initializeWeightArray (wWeightArraySizeList, debugInitializeOff)
-
-# Obtain the actual (randomly-initialized) values for the hidden-to-output connection weight matrix.    
-vWeightArray = initializeWeightArray (vWeightArraySizeList, debugInitializeOff)
-
-# Now, we similarly need to obtain randomly-initialized values for the two sets of bias weights. 
-#    Each set of bias weights is stored in its respective 1-D array 
-#    Recall that we have previously initialized the SIZE for each of these 1-D arrays.         
-biasHiddenWeightArray = initializeBiasWeightArray (biasHiddenWeightArraySize)
-biasOutputWeightArray = initializeBiasWeightArray (biasOutputWeightArraySize) 
+#wWeightArray = initializeWeightArray (wWeightArraySizeList, debugInitializeOff)
+wWeightArray = np.array([(0.15,  0.23), (0.20, 0.30)])
+# Obtain the actual (randomly-initialized) values for the hidden-to-output connection weight matrix.
+#vWeightArray = initializeWeightArray (vWeightArraySizeList, debugInitializeOff)
+vWeightArray = np.array([(0.40,  0.50), (0.45, 0.55)])
+# Now, we similarly need to obtain randomly-initialized values for the two sets of bias weights.
+#    Each set of bias weights is stored in its respective 1-D array
+#    Recall that we have previously initialized the SIZE for each of these 1-D arrays.
+#biasHiddenWeightArray = initializeBiasWeightArray (biasHiddenWeightArraySize)
+#biasOutputWeightArray = initializeBiasWeightArray (biasOutputWeightArraySize)
+biasHiddenWeightArray = np.array((0.20,  0.86))
+biasOutputWeightArray = np.array((0.28,  0.41))
 
 print ' '
 print 'About to enter the while loop for ', maxNumIterations, ' iterations'
