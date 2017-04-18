@@ -1,15 +1,7 @@
-
-# coding: utf-8
-
-# In[1]:
-
-#%matplotlib inline
-#import matplotlib.pyplot as plt
-import numpy as np
-#import seaborn as sns
-import pandas as pd
+import seaborn as sns
 from multiprocessing import Pool, cpu_count
 from simple_5x5_letter_classification_tutorial_code_v6_2017_02_02 import *
+
 
 alpha_list = range(1,11)
 eta_list = list(np.array(range(1,11)) / 10.0)
@@ -59,19 +51,9 @@ arg_iteration_results_df = pd.concat(arg_iteration_results_df_pool)
 arg_iteration_results_df = arg_iteration_results_df.sort_values('avg_SSE', ascending = True)
 arg_iteration_results_df.to_csv('5_letters_first_nn.csv')
 
-
-# In[ ]:
-
-
-
-
-# In[36]:
-
 arg_iteration_results_df = arg_iteration_results_df.sort_values('avg_SSE', ascending = True)
 arg_iteration_results_df_trimmed =  arg_iteration_results_df[['letter','alpha', 'eta', 'SSE', 'iteration']]
 
-
-# In[35]:
 
 alpha = arg_iteration_results_df_trimmed[arg_iteration_results_df_trimmed['alpha'] == 4]
 
@@ -79,15 +61,8 @@ ax = sns.pointplot(x="eta", y="SSE", hue="letter",
                     data=alpha, palette="Set2")
 
 
-# In[40]:
-
 eta_df = arg_iteration_results_df_trimmed[arg_iteration_results_df_trimmed['eta'] == 0.6]
 
 ax = sns.pointplot(x="alpha", y="SSE", hue="letter",
                     data=eta_df, palette="Set2")
-
-
-# In[ ]:
-
-
 
